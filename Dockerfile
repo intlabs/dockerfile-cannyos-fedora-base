@@ -25,7 +25,7 @@ MAINTAINER "Pete Birley (petebirley@gmail.com)"
 
 # Install base utilities.
 RUN \
-  yum update && \
+  yum update -y && \
   yum upgrade -y
 
 # Add files.
