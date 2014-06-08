@@ -37,6 +37,16 @@ rm -f "/CannyOS/Host/done"
 
 # Put content of script here
 
+#Install OpenSSH server
+yum install -y openssh-server
+mkdir -p /var/run/sshd 
+
+# Install FUSE
+yum install -y fuse
+
+# Install SSHFS
+yum install -y sshfs
+
 
 echo ""
 cat /CannyOS/CannyOS.splash

@@ -27,7 +27,10 @@ MAINTAINER "Pete Birley (petebirley@gmail.com)"
 RUN \
   yum update -y && \
   yum upgrade -y
-
+  yum install -y make automake gcc gcc-c++ kernel-devel
+  yum install -y ca-certificates glib* python3 
+  yum install -y byobu curl git htop man unzip vim wget sed
+ 
 # Add files.
 ADD root/.bashrc /root/.bashrc
 ADD root/.gitconfig /root/.gitconfig
@@ -42,8 +45,8 @@ ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /
 
 #Create user
-#RUN adduser --disabled-password --gecos "" user
-#RUN echo 'user:acoman' |chpasswd
+RUN adduser -c "" user
+RUN echo 'user:acoman' |chpasswd
 
 #Add startup & post-install script
 ADD /CannyOS/startup.sh /CannyOS/startup.sh
