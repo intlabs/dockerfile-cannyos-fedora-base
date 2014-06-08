@@ -26,11 +26,11 @@ MAINTAINER "Pete Birley (petebirley@gmail.com)"
 # Install base utilities.
 RUN \
   yum update -y && \
-  yum upgrade -y
-  yum install -y make automake gcc gcc-c++ kernel-devel
-  yum install -y ca-certificates glib* python3 
+  yum upgrade -y && \
+  yum install -y make automake gcc gcc-c++ kernel-devel && \
+  yum install -y ca-certificates glib* python3 && \
   yum install -y byobu curl git htop man unzip vim wget sed
- 
+
 # Add files.
 ADD root/.bashrc /root/.bashrc
 ADD root/.gitconfig /root/.gitconfig
