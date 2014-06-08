@@ -62,7 +62,7 @@ sudo docker kill dockerfile-cannyos-fedora-base && \
 sudo docker rm dockerfile-cannyos-fedora-base
 
 # Launch built base container image
-sudo docker run -i -t -rm \
+sudo docker run -i -t -d \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-fedora-base":"/CannyOS/Host" \
  --name "dockerfile-cannyos-fedora-base" \
