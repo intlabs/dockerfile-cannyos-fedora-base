@@ -42,8 +42,8 @@ ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /
 
 #Create user
-RUN adduser --disabled-password --gecos "" user
-RUN echo 'user:acoman' |chpasswd
+#RUN adduser --disabled-password --gecos "" user
+#RUN echo 'user:acoman' |chpasswd
 
 #Add startup & post-install script
 ADD /CannyOS/startup.sh /CannyOS/startup.sh
