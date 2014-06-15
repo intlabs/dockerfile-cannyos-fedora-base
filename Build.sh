@@ -141,5 +141,4 @@ sudo docker run -i -t --rm \
  --volume "/CannyOS/build/dockerfile-cannyos-fedora-fuse":"/CannyOS/Host" \
  --name "dockerfile-cannyos-fedora-fuse" \
  --user "root" \
- -p 80:80 \
  intlabs/dockerfile-cannyos-fedora-fuse
