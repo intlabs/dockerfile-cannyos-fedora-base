@@ -66,6 +66,7 @@ sudo docker run -i -t -d \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-fedora-base":"/CannyOS/Host" \
  --name "dockerfile-cannyos-fedora-base" \
+ --hostname "dockerfile-cannyos-fedora-base" \
  --user "root" \
  intlabs/dockerfile-cannyos-fedora-base
 
@@ -123,7 +124,7 @@ sudo docker stop dockerfile-cannyos-fedora-base
 echo ""
 echo "*****************************************************"
 echo "*                                                   *"
-echo "* CannyOS/dockerfile-cannyos-fedora-fuse  :)  *"
+echo "* CannyOS/dockerfile-cannyos-fedora-fuse  :)        *"
 echo "*                                                   *"
 echo "*****************************************************"
 echo ""
@@ -140,5 +141,6 @@ sudo docker run -i -t --rm \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-fedora-fuse":"/CannyOS/Host" \
  --name "dockerfile-cannyos-fedora-fuse" \
+ --hostname "dockerfile-cannyos-fedora-fuse" \
  --user "root" \
  intlabs/dockerfile-cannyos-fedora-fuse
