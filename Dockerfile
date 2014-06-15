@@ -1,5 +1,5 @@
 #
-# CannyOS Ubuntu 14.04 lts base container
+# CannyOS fedora base container
 #
 # https://github.com/intlabs/dockerfile-cannyos-fedora-base
 #
@@ -19,41 +19,32 @@
 #
 
 # Pull base image.
-FROM fedora
+FROM fedora:rawhide
 
 MAINTAINER "Pete Birley (petebirley@gmail.com)"
 
-# Install base utilities.
-RUN \
-  yum update -y && \
-  yum upgrade -y && \
-  yum install -y make automake gcc gcc-c++ kernel-devel && \
-  yum install -y ca-certificates glib* python3 && \
-  yum install -y byobu curl git htop man unzip vim wget sed
-
-# Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/scripts /root/scripts
-RUN chmod -R +x /root/scripts/*
-
 # Set environment variables.
 ENV HOME /root
-ENV DEBIAN_FRONTEND noninteractive
+ENV DISTRO fedora
+
+# Install base utilities.
+RUN yum update -y && yum install -y curl
+RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/packages/packages-10.sh | bash
+
+#Add files for root user.
+ADD root /root
+RUN chmod -R +x /root/scripts/*
+
+#Create normal user
+RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
 
 # Set the working directory
 WORKDIR /
 
-#Create user
-RUN adduser -c "" user
-RUN echo 'user:acoman' |chpasswd
-
 #Add startup & post-install script
-ADD /CannyOS/startup.sh /CannyOS/startup.sh
-RUN chmod +x /CannyOS/startup.sh
-ADD /CannyOS/post-install.sh /CannyOS/post-install.sh
-RUN chmod +x /CannyOS/post-install.sh
-ADD /CannyOS/CannyOS.splash /CannyOS/CannyOS.splash
+ADD CannyOS /CannyOS
+WORKDIR /CannyOS
+RUN chmod +x *.sh
 
 # Define mountable directories.
 VOLUME ["/data"]
